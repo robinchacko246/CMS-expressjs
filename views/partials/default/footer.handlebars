@@ -1,0 +1,104 @@
+
+<!-- Footer -->
+<footer class="py-5 bg-dark">
+    <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+    </div>
+    <!-- /.container -->
+</footer>
+
+<!-- Bootstrap core JavaScript -->
+<script src="/vendor/jquery/jquery.min.js"></script>
+<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/4.4.0/firebase-ui-auth.js"></script>
+<link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.4.0/firebase-ui-auth.css" />
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script> 
+<script>
+    $(document).ready(function () {
+       setTimeout(function () {
+           $('.alert').slideUp(1000);
+       },1000);
+    });
+        
+  var config = {
+   apiKey:    "AIzaSyDz_zdTvUpE2NkYRuwa8n2pr4D_AhCmOyY",
+  authDomain: "sample-app-66b91.firebaseapp.com",
+  databaseUrl: "https://sample-app-66b91.firebaseio.com",
+  projectId: "sample-app-66b91",
+  storageBucket: "gs://sample-app-66b91.appspot.com",
+  messagingSenderId: "877729263112",
+  appId: "1:877729263112:android:a35e67a30d21b6fe8bebbd"
+  };
+  
+  forgotPassword=()=>
+  {
+    firebase.initializeApp(config);
+    firebase.auth().sendPasswordResetEmail($('#resetEmail').val()).then(function(){
+
+      alert("successfully sent reset link ");
+      $('#exampleModal').modal('toggle');
+    });
+    
+   
+  }
+  googleSignIn=()=>
+  {
+      firebase.initializeApp(config);
+      base_provider=new firebase.auth.GoogleAuthProvider();
+      firebase.auth()
+  .signInWithPopup(base_provider)
+  .then((result) => {
+    /** @type {firebase.auth.OAuthCredential} */
+    var credential = result.credential;
+
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    var token = credential.accessToken;
+    // The signed-in user info.
+    var user = result.user;
+    console.log("req",result)
+$.post("/registerEmail", {
+    firstName: result.user.displayName,
+    lastName:result.user.displayName,
+    email:result.user.email,
+    password:"result.user",
+    passwordConfirm:"result.user"
+    
+  }, function(data, status){
+     
+     $.post("/login", {
+ 
+    email:result.user.email,
+    password:"result.user"
+   
+    
+  }, function(data, status){
+     console.log("final prod");
+     window.location.href = "/admin";
+  });
+  });
+     
+
+    // ...
+  }).catch((error) => {
+      console.log(error)
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // The email of the user's account used.
+    var email = error.email;
+    // The firebase.auth.AuthCredential type that was used.
+    var credential = error.credential;
+    // ...
+  });
+  }
+</script>
+<script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
+<script>
+
+</script>
+</body>
+
+</html>
