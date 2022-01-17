@@ -408,12 +408,13 @@ createPortfiolo: (req, res) => {
     
     let title = req.body.name||"Test";
     let description = req.body.decription||"Test";
-     
+     let image=req.body.image||"https://res.cloudinary.com/djl4pepq7/image/upload/v1642414821/netotech/oie_OykdHZcmoydi_1_ga8dax.png"
     if (title) 
     {
         const newOurwork = new PortfolioModel({
             title: title,
-            description:description
+            description:description,
+            image:image
         });
 
         
@@ -448,11 +449,13 @@ submitEditPortfioloPage: (req, res) => {
     const catId = req.params.id;
     const newTitle = req.body.name;
     const newDescription=req.body.description;
+    let image=req.body.image||"https://res.cloudinary.com/djl4pepq7/image/upload/v1642414821/netotech/oie_OykdHZcmoydi_1_ga8dax.png"
     if (newTitle) {
         PortfolioModel.findById(catId).then(services => {
              console.log(services);
             services.title = newTitle;
             services.description = newDescription;
+            services.image=image;
             services.save().then(updated => {
                 res.status(200).json({url: '/admin/portfolio'});
             });
