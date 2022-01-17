@@ -395,6 +395,71 @@ submitEditOurworkPage: (req, res) => {
 
 
 
+// portfiolo
+getPortfiolo: (req, res) => {
+
+    PortfolioModel.find().then(ourwork => {
+        res.render('admin/portfolio/index', {portfolio: ourwork});
+    });
+},
+
+createPortfiolo: (req, res) => {
+    
+    
+    let title = req.body.name||"Test";
+    let description = req.body.decription||"Test";
+     
+    if (title) 
+    {
+        const newOurwork = new PortfolioModel({
+            title: title,
+            description:description
+        });
+
+        
+        
+        newOurwork.save().then(services => {
+            res.status(200).json(services);
+        });
+    }
+
+},
+
+getEditPortfioloPage: async (req, res) => {
+    const servicesId = req.params.id;
+
+    const services = await PortfolioModel.find();
+
+    
+    
+
+    PortfolioModel.findById(servicesId).then(service => {
+
+       
+        
+
+        res.render('admin/portfolio/edit', {portfolio: service, portfolios: services});
+
+    });
+},
+
+
+submitEditPortfioloPage: (req, res) => {
+    const catId = req.params.id;
+    const newTitle = req.body.name;
+    const newDescription=req.body.description;
+    if (newTitle) {
+        PortfolioModel.findById(catId).then(services => {
+             console.log(services);
+            services.title = newTitle;
+            services.description = newDescription;
+            services.save().then(updated => {
+                res.status(200).json({url: '/admin/portfolio'});
+            });
+
+        });
+    }
+},
 };
 
 

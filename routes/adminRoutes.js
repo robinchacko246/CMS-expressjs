@@ -79,4 +79,16 @@ router
   .get(adminController.getEditOurworkPage)
   .post(adminController.submitEditOurworkPage);
 
+
+
+  //portfolio create
+  
+  router.route("/portfolio").get(adminController.getPortfiolo);
+router.route("/portfolio/create").post(adminController.createPortfiolo);
+router
+  .route("/portfolio/edit/:id")
+  .get(adminController.getEditPortfioloPage)
+  .post(adminController.submitEditPortfioloPage);
+
+
 module.exports = router;

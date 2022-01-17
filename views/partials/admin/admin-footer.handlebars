@@ -250,5 +250,57 @@
             });
         });
 
+ $("#create-portfolio-button").on('click', function (e) {
+            e.preventDefault();
+
+            var data = $("#ourwork-title").val();
+               var decription = $("#ourwork-decription").val();
+            $.ajax({
+                url: '/admin/portfolio/create',
+                type: 'POST',
+                data: {name: data,decription:decription},
+                success: function (response) {
+
+                    var html = `<tr>
+                        <td>${response.title}</td>
+                         <td>${response.description}</td>
+                        <td class="d-flex justify-content-center">
+                            <a href="/admin/portfolio/edit/${response._id}" class="btn btn-sm btn-warning mr-2">Edit</a>
+                            <form action="/admin/portfolio/${response._id}?newMethod=DELETE" method="post">
+                                {{!-- <button class="btn btn-sm btn-danger" type="submit">Delete</button> --}}
+                            </form>
+                        </td>
+                    </tr>`;
+
+
+                    $(".ourwork-list").append(html);
+
+                }
+            });
+
+            $("#ourwork-title").val('');
+        });
+
+  
+      $("#update-portfolio-button").on('click', function (e) {
+            e.preventDefault();
+
+            var data = $("#ourwork-title").val();
+            var description = $("#ourwork-description").val();
+            var id = $("#ourwork-id").val();
+
+            $.ajax({
+                url: `/admin/portfolio/edit/${id}`,
+                type: 'POST',
+                data: {name: data,description:description},
+                success: function (response) {
+                    window.location.href = response.url;
+                }
+            });
+        });
     });
+
+
+
+    
 </script>

@@ -7,7 +7,10 @@ const PostSchema = new Schema({
         type: String,
         required: true
     },
-    
+    description:{
+        type: String,
+        required: true
+    },
     status: {
         type: String,
         default: 'public'
@@ -15,7 +18,7 @@ const PostSchema = new Schema({
     
     image: {
         type: String,
-        required: true
+        required: false
     },
     
     creationDate: {
