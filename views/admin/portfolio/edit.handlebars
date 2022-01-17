@@ -10,6 +10,9 @@
                 <thead class="bg-primary">
                 <tr>
                     <th>portfolio Title</th>
+                    <th>project link</th>
+                     <th>image url</th>
+                     
                     <th>portfolio Description</th>
                     <th>Action</th>
                 </tr>
@@ -19,7 +22,9 @@
                     <tr>
 
                         <td>{{title}}</td>
-                          <td>{{description}}</td>
+                        <td>{{link}}</td>
+                           <td class="ellipsis">{{image}}</td>
+                          <td class="ellipsis">{{description}}</td>
                         <td class="d-flex justify-content-center">
                             <a href="/admin/portfolio/edit/{{_id}}" class="btn btn-sm btn-warning mr-2" role="button">Edit</a>
                             <form action="/admin/portfolio/{{_id}}?newMethod=DELETE" method="post">
@@ -41,6 +46,10 @@
             <div class="form-group">
                 <label for="title">Title</label>
                 <input type="text" class="form-control" id="ourwork-title" name="title" value="{{portfolio.title}}">
+                 <label for="title">Project Link</label>
+                <input type="text" class="form-control" id="ourwork-link" name="title" value="{{portfolio.link}}">
+                 <label for="title">Image URL</label>
+                <input type="text" class="form-control" id="ourwork-image" name="image" value="{{portfolio.image}}">
                 <label for="title">Description</label>
                 <input type="text" class="form-control" id="ourwork-description" name="description" value="{{portfolio.description}}">
                 <input type="hidden" class="form-control" id="ourwork-id" name="id" value="{{portfolio._id}}">

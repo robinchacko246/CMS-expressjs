@@ -255,10 +255,12 @@
 
             var data = $("#ourwork-title").val();
                var decription = $("#ourwork-decription").val();
+               var image=$('#image').val();
+               var link=$('#link').val();
             $.ajax({
                 url: '/admin/portfolio/create',
                 type: 'POST',
-                data: {name: data,decription:decription},
+                data: {name: data,decription:decription,image:image,link:link},
                 success: function (response) {
 
                     var html = `<tr>
@@ -287,12 +289,13 @@
 
             var data = $("#ourwork-title").val();
             var description = $("#ourwork-description").val();
+            var image= $("#ourwork-image").val();
             var id = $("#ourwork-id").val();
-
+             var link=$('#ourwork-link').val();
             $.ajax({
                 url: `/admin/portfolio/edit/${id}`,
                 type: 'POST',
-                data: {name: data,description:description},
+                data: {name: data,description:description,image:image,link:link},
                 success: function (response) {
                     window.location.href = response.url;
                 }

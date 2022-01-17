@@ -345,7 +345,7 @@ footer.sticky-footer {
   body.sidenav-toggled footer.sticky-footer {
     width: calc(100% - 55px); } }
     .ellipsis {
-      max-width: 400px;
+      max-width: 150px;
       text-overflow: ellipsis;
       overflow: hidden;
       white-space: nowrap;

@@ -20,7 +20,10 @@ const PostSchema = new Schema({
         type: String,
         required: false
     },
-    
+    link:{
+        type: String,
+        required: false
+    },
     creationDate: {
         type: Date,
         default: Date.now()
