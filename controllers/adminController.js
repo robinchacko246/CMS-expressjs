@@ -305,9 +305,9 @@ getEditBlogPage: async (req, res) => {
 
 submitEditBlogPage: (req, res) => {
     const blogId = req.params.id;
-    let blogHead = req.body.data||"Test";
+    let blogHead = req.body.name||"Test";
 
-    let blogDetails = req.body.decription||"Test";
+    let blogDetails = req.body.description||"Test";
     let image = req.body.image||"Test";
 
     console.log("re",req.body,req.params);
